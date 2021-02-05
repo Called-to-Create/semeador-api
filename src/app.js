@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import dotenvConfig from './config/dotenv.config';
+import placeRoutes from './modules/place/place.routes';
 import projectRoutes from './modules/project/project.routes';
 
 
@@ -15,6 +16,7 @@ class App {
 
   routes() {
     this.express.use(projectRoutes.endpointBase, projectRoutes);
+    this.express.use(placeRoutes.endpointBase, placeRoutes);
   }
 
   middlewares() {
