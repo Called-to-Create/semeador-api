@@ -8,7 +8,7 @@ COPY package.json .
 COPY yarn.lock .
 
 # Install production dependencies.
-RUN yarn install --production
+RUN yarn install
 
 # Copy local codebase into the container image
 COPY . .
