@@ -1,7 +1,4 @@
-# My Projects API
-
-[![CircleCI](https://circleci.com/gh/juniorstreichan/my-ideas-backend.svg?style=svg)](https://circleci.com/gh/juniorstreichan/my-ideas-backend) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cea680d6d7c4496b9cf3749246b13b95)](https://www.codacy.com/manual/juniorstreichan/my-ideas-backend?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=juniorstreichan/my-ideas-backend&amp;utm_campaign=Badge_Grade)
-
+# 🌱 Semeador API
 ----------------------
 
 ## This is an API for ideas!
