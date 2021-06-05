@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { response, Router } from "express";
 import Place from "./Place";
 
 const placeRoutes = Router();
@@ -12,7 +12,7 @@ placeRoutes.post("/mailing", (req, res) => {
   const projectId = req.headers["project_id"];
 
   const placeRequest = req.body;
-//   console.log(placeRequest);
+  //   console.log(placeRequest);
 
   const place = {
     obs: placeRequest.obs,
@@ -42,5 +42,47 @@ placeRoutes.post("/mailing", (req, res) => {
     .then((newPlace) => res.status(201).json(newPlace))
     .catch((error) => res.status(500).json(error));
 });
+
+placeRoutes.post("/mailing/add-envelope/:id", async (req, res) => {
+  const user = req.headers["user"];
+  const projectId = req.headers["project_id"];
+  const placeId = req.params.id;
+  try {
+    await Place.updateOne(
+      { _id: placeId, projectId },
+      {
+        $push: {
+          envelopes: {
+            date: Date(),
+            postman: user,
+          },
+        },
+      }
+    );
+    res.sendStatus(204);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
+
+// placeRoutes.get("/search", (req, res) => {
+//   Place.find(
+//     {
+//       createdAt: {
+//         $gte: "2021-02-07",
+//         $lt: "2021-02-14",
+//       },
+//     },
+//     "_id createdFor location.coordinates address.number address.road obs"
+//   )
+//     .limit(1000)
+//     .then((result) => {
+//       console.log("result lines", result.length);
+
+//       res.status(200).json(result);
+//     })
+//     .catch((error) => res.status(500).json(error));
+// });
 
 export default placeRoutes;
